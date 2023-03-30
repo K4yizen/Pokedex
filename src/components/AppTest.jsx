@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import './App.css';
+/*
 
-import MyTitle from './components/MyTitle';
-import PokemonCard from './components/PokemonCard';
+import { useState } from 'react'
+import './App.css'
+
+
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import MyTitle from './components/MyTitle'
+
+
+import PokemonCard from './components/PokemonCard'
 import NavBar from "./components/NavBar";
 
 function App() {
-  const [pokemonIndex, setPokemonIndex] = useState(0);
+  const [pokemonIndex, setPokemonIndex] = useState(0)
 
   const pokemonList = [
     {
@@ -34,18 +41,37 @@ function App() {
     },
   ];
 
+  const handlePrevious = () => {
+    if (pokemonIndex > 0) {
+      setPokemonIndex(pokemonIndex - 1);
+    }
+  };
   const handleNext = (index) => {
-    setPokemonIndex(index);
+    if (pokemonIndex < index) {
+      setPokemonIndex(pokemonIndex + 1);
+    } else {
+      setPokemonIndex(pokemonIndex - 1);
+    }
   };
 
-  const currentPokemon = pokemonList[pokemonIndex];
+  const currentPokemon = pokemonList[pokemonIndex]
+  const hasPrevious = pokemonIndex > 0;
+  const hasNext = pokemonIndex < pokemonList.length - 1;
 
   return (
     <div>
-      <NavBar pokemonList={pokemonList} currentIndex={pokemonIndex} onNext={handleNext} />
+      <NavBar
+        pokemonList={pokemonList}
+        currentIndex={pokemonIndex}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        hasPrevious={hasPrevious}
+        hasNext={hasNext}
+      />
       <PokemonCard pokemon={currentPokemon} />
     </div>
   );
 }
 
 export default App;
+*/
