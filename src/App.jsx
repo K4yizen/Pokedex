@@ -5,6 +5,7 @@ import './App.css'
 
 import MyTitle from './components/MyTitle'
 import PokemonCard from './components/PokemonCard'
+import NavBar from "./components/NavBar";
 
 function App() {
   const [pokemonIndex, setPokemonIndex] = useState(0)
@@ -46,6 +47,8 @@ function App() {
   };
 
   const currentPokemon = pokemonList[pokemonIndex]
+  const hasPrevious = pokemonIndex > 0;
+  const hasNext = pokemonIndex < pokemonList.length - 1;
 
 
   return (
@@ -53,13 +56,13 @@ function App() {
     
 
     <div>
-       {pokemonIndex > 0 && (
-      <button onClick={handlePreviousPokemon}>Précèdent</button>
-       )}
-      <PokemonCard pokemon={currentPokemon}/>
-      {pokemonIndex < pokemonList.length - 1 && (
-      <button onClick={handleNextPokemon} >Suivant</button>
-      )}
+      <NavBar
+        onPrevious={handlePreviousPokemon}
+        onNext={handleNextPokemon}
+        hasPrevious={hasPrevious}
+        hasNext={hasNext}
+      />
+      <PokemonCard pokemon={currentPokemon} />
     </div>
   );
 }
