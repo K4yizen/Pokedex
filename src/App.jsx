@@ -1,9 +1,5 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
-
-import MyTitle from './components/MyTitle'
 import PokemonCard from './components/PokemonCard'
 import NavBar from "./components/NavBar";
 
@@ -35,6 +31,15 @@ function App() {
     },
   ];
 
+  useEffect(
+    () => {
+      alert("hello pokemon trainer :)");
+    },
+    []
+  );
+
+  
+
   const handlePreviousPokemon = () => {
     if (pokemonIndex > 0) {
       setPokemonIndex(pokemonIndex - 1);
@@ -46,10 +51,17 @@ function App() {
     }
   };
 
+
   const currentPokemon = pokemonList[pokemonIndex]
   const hasPrevious = pokemonIndex > 0;
   const hasNext = pokemonIndex < pokemonList.length - 1;
 
+  useEffect(() => {
+    if (currentPokemon.name === "pikachu") {
+      alert("pika pikachu !!!");
+    }
+  }, [currentPokemon]);
+  
 
   return (
     
@@ -61,6 +73,8 @@ function App() {
         onNext={handleNextPokemon}
         hasPrevious={hasPrevious}
         hasNext={hasNext}
+        
+      
       />
       <PokemonCard pokemon={currentPokemon} />
     </div>
